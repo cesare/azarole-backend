@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_060351) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_063020) do
+  create_table "attendance_records", force: :cascade do |t|
+    t.integer "workplace_id", null: false
+    t.string "event", null: false
+    t.datetime "recorded_at", null: false
+    t.datetime "created_at", null: false
+    t.index ["workplace_id"], name: "index_attendance_records_on_workplace_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
   end
