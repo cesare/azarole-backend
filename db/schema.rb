@@ -10,8 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_052637) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_060351) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
+  end
+
+  create_table "workplaces", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workplaces_on_user_id"
   end
 end
