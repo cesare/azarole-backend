@@ -44,4 +44,6 @@ group :development, :test do
 
   # RSpec testing framework
   gem "rspec-rails"
+
+  gem "standard"
 end
