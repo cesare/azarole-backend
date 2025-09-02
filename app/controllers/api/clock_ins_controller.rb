@@ -1,5 +1,14 @@
 class Api::ClockInsController < ApplicationController
   def create
-    render json: {}, status: :created
+    workplace = Workplace.find(params[:workplace_id])
+    attendance_record = AttendanceRecord.create!(workplace:, event: "clock-in")
+
+    response_json = {
+      attendance_record: {
+        id: attendance_record.id,
+        recorded_at: attendance_record.recorded_at
+      }
+    }
+    render json: response_json, status: :created
   end
 end
