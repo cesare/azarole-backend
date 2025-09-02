@@ -1,7 +1,7 @@
 class Api::ClockInsController < ApplicationController
   def create
     workplace = Workplace.find(params[:workplace_id])
-    attendance_record = AttendanceRecord.create!(workplace:, event: "clock-in")
+    attendance_record = workplace.attendance_records.create!(event: "clock-in")
 
     response_json = {
       attendance_record: {
