@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :workplaces, only: %i[] do
       resources :clock_ins, only: %i[create]
+      resources :clock_outs, only: %i[create]
     end
   end
 end
