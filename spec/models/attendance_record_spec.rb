@@ -31,7 +31,7 @@ RSpec.describe AttendanceRecord, type: :model do
     end
 
     context "when recorded_at is given" do
-      let(:specified_recorded_at) { Time.current.yesterday }
+      let(:specified_recorded_at) { Time.current.yesterday.round }
       let(:attendance_record) { AttendanceRecord.create!(workplace:, event: "clock-in", recorded_at: specified_recorded_at) }
 
       subject { attendance_record.recorded_at }
