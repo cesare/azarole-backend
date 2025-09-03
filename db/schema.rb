@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_063020) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_03_051754) do
+  create_table "api_keys", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "digest", null: false
+    t.datetime "created_at", null: false
+    t.index ["digest"], name: "index_api_keys_on_digest", unique: true
+    t.index ["user_id"], name: "index_api_keys_on_user_id"
+  end
+
   create_table "attendance_records", force: :cascade do |t|
     t.integer "workplace_id", null: false
     t.string "event", null: false
