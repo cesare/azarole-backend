@@ -2,7 +2,7 @@ class Api::ClockOutsController < ApplicationController
   include AuthenticationWithApiKey
 
   def create
-    workplace = Workplace.find(params[:workplace_id])
+    workplace = current_user.workplaces.find(params[:workplace_id])
     attendance_record = workplace.attendance_records.create!(event: "clock-out")
 
     response_json = {
