@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   get "auth/google_oauth2/callback", to: "google_auth_sessions#create"
+  get "auth/failure", to: redirect("/")
   delete "signout", to: "sessions#destroy"
 
   namespace :api do
