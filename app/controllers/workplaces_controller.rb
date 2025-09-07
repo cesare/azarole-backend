@@ -1,4 +1,6 @@
 class WorkplacesController < ApplicationController
+  include AuthenticationWithSession
+
   def index
     workplaces = Workplace.all
 
