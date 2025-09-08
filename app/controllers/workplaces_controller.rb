@@ -5,12 +5,7 @@ class WorkplacesController < ApplicationController
     workplaces = current_user.workplaces.order(:id).all
 
     response_json = {
-      workplaces: workplaces.map do |wp|
-        {
-          id: wp.id,
-          name: wp.name
-        }
-      end
+      workplaces: workplaces.map { |workplace| workplace_json(workplace) }
     }
     render json: response_json
   end
@@ -19,11 +14,15 @@ class WorkplacesController < ApplicationController
     workplace = current_user.workplaces.create!(name: params[:name])
 
     response_json = {
-      workplace: {
-        id: workplace.id,
-        name: workplace.name
-      }
+      workplace: workplace_json(workplace)
     }
     render json: response_json, status: :created
   end
+
+  private
+
+  def workplace_json(workplace) = {
+    id: workplace.id,
+    name: workplace.name
+  }
 end
