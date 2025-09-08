@@ -14,4 +14,16 @@ class WorkplacesController < ApplicationController
     }
     render json: response_json
   end
+
+  def create
+    workplace = current_user.workplaces.create!(name: params[:name])
+
+    response_json = {
+      workplace: {
+        id: workplace.id,
+        name: workplace.name
+      }
+    }
+    render json: response_json, status: :created
+  end
 end

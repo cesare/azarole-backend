@@ -38,4 +38,37 @@ RSpec.describe "workplaces", type: :request do
       end
     end
   end
+
+  describe "POST /workplaces" do
+    context "when user is not signed in" do
+      it "returns unauthorized error" do
+        post "/workplaces", params: {name: "test"}
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
+
+  context "when user is signed in" do
+    let(:user) { User.create! }
+
+    before { login_as(user:) }
+
+    it "creates new workplace" do
+      expect {
+        post "/workplaces", params: {name: "new workplace"}
+      }.to change { user.workplaces.count }.by(1)
+
+      expect(response).to have_http_status(:created)
+
+      created_workplace = user.workplaces.order(id: :desc).first
+      expected_json = {
+        workplace: {
+          id: created_workplace.id,
+          name: "new workplace"
+        }
+      }.to_json
+      expect(response.body).to be_json_eql(expected_json).including(:id)
+    end
+  end
 end
