@@ -71,4 +71,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   OmniAuth.config.test_mode = true
+
+  config.include LoginHelper, type: :request
 end
