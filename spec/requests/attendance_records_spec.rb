@@ -4,7 +4,7 @@ RSpec.describe "attendance_records", type: :request do
   describe "GET /workplaces/:workplace_id/attendance_records" do
     context "when user is not signed in" do
       it "returns unauthorized error" do
-        get "/workplaces/123/attendance_records"
+        get "/workplaces/123/attendance_records/2025/09"
 
         expect(response).to have_http_status(:unauthorized)
       end
@@ -18,6 +18,9 @@ RSpec.describe "attendance_records", type: :request do
       let(:yesterday) { today.yesterday }
       let(:last_month_day) { today.last_month }
 
+      let(:year) { today.year.to_s }
+      let(:month) { format "%02d", today.month }
+
       before do
         login_as(user:)
 
@@ -30,8 +33,8 @@ RSpec.describe "attendance_records", type: :request do
         workplace.attendance_records.create!(event: "clock-out", recorded_at: last_month_day.change(hour: 17))
       end
 
-      it "lists attendance_records of this month" do
-        get "/workplaces/#{workplace.id}/attendance_records"
+      it "lists attendance_records of specified month" do
+        get "/workplaces/#{workplace.id}/attendance_records/#{year}/#{month}"
 
         expect(response).to have_http_status(:ok)
 

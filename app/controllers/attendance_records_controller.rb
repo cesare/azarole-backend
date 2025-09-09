@@ -19,5 +19,7 @@ class AttendanceRecordsController < ApplicationController
 
   private
 
-  def indexing_range = Time.current.beginning_of_month.then { (it...it.next_month) }
+  def indexing_range = beginning_of_specified_month.then { (it...it.next_month) }
+
+  def beginning_of_specified_month = Time.zone.local(params[:year], params[:month])
 end

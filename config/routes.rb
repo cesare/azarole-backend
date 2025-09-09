@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete "signout", to: "sessions#destroy"
 
   resources :workplaces, only: %i[index create] do
-    resources :attendance_records, only: %i[index]
+    get "attendance_records/:year/:month", to: "attendance_records#index"
   end
 
   namespace :api do
