@@ -48,5 +48,34 @@ RSpec.describe "attendance_records", type: :request do
         expect(response.body).to be_json_eql(expected_json)
       end
     end
+
+    context "when signed-in does not have attendance record for the month" do
+      let(:user) { User.create! }
+      let(:workplace) { user.workplaces.create!(name: "Home") }
+
+      let(:today) { Time.current.beginning_of_day }
+      let(:last_month_day) { today.last_month }
+
+      let(:year) { today.year.to_s }
+      let(:month) { format "%02d", today.month }
+
+      before do
+        login_as(user:)
+
+        workplace.attendance_records.create!(event: "clock-in", recorded_at: last_month_day.change(hour: 13))
+        workplace.attendance_records.create!(event: "clock-out", recorded_at: last_month_day.change(hour: 17))
+      end
+
+      it "returns empty records" do
+        get "/workplaces/#{workplace.id}/attendance_records/#{year}/#{month}"
+
+        expect(response).to have_http_status(:ok)
+
+        expected_json = {
+          attendance_records: []
+        }.to_json
+        expect(response.body).to be_json_eql(expected_json)
+      end
+    end
   end
 end
