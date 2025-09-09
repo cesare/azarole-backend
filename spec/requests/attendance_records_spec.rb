@@ -39,7 +39,7 @@ RSpec.describe "attendance_records", type: :request do
         expect(response).to have_http_status(:ok)
 
         expected_json = {
-          attendance_records: [
+          attendanceRecords: [
             {event: "clock-in", recordedAt: yesterday.change(hour: 11).iso8601},
             {event: "clock-out", recordedAt: yesterday.change(hour: 13).iso8601},
             {event: "clock-in", recordedAt: today.change(hour: 10).iso8601}
@@ -72,7 +72,7 @@ RSpec.describe "attendance_records", type: :request do
         expect(response).to have_http_status(:ok)
 
         expected_json = {
-          attendance_records: []
+          attendanceRecords: []
         }.to_json
         expect(response.body).to be_json_eql(expected_json)
       end
