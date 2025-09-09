@@ -2,7 +2,7 @@ class AttendanceRecordsController < ApplicationController
   include AuthenticationWithSession
 
   def index
-    workplace = current_user.workplaces.find_by!(params[:workplace_id])
+    workplace = current_user.workplaces.find(params[:workplace_id])
     attendance_records = workplace.attendance_records.where(recorded_at: indexing_range).order(:recorded_at).all
 
     response_json = {
