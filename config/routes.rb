@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "auth/failure", to: redirect("/")
   delete "signout", to: "sessions#destroy"
 
+  resources :api_keys, only: %i[create]
   resources :workplaces, only: %i[index create] do
     resources :attendance_records, only: %i[index destroy]
   end
