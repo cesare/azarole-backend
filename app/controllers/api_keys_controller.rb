@@ -1,6 +1,20 @@
 class ApiKeysController < ApplicationController
   include AuthenticationWithSession
 
+  def index
+    api_keys = current_user.api_keys.order(created_at: :desc).all
+
+    response_json = {
+      api_keys: api_keys.map do |api_key|
+        {
+          id: api_key.id,
+          name: api_key.name
+        }
+      end
+    }
+    render json: response_json
+  end
+
   def create
     registered_key = ApiKey::NewKeyRegistrar.new(user: current_user, name: params[:name]).register
 
