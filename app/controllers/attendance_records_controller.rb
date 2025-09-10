@@ -17,6 +17,14 @@ class AttendanceRecordsController < ApplicationController
     render json: response_json
   end
 
+  def destroy
+    workplace = current_user.workplaces.find(params[:workplace_id])
+    attendance_record = workplace.attendance_records.find(params[:id])
+    attendance_record.destroy!
+
+    head :ok
+  end
+
   private
 
   def indexing_range = beginning_of_specified_month.then { (it...it.next_month) }
