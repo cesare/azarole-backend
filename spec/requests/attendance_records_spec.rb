@@ -4,7 +4,7 @@ RSpec.describe "attendance_records", type: :request do
   describe "GET /workplaces/:workplace_id/attendance_records" do
     context "when user is not signed in" do
       it "returns unauthorized error" do
-        get "/workplaces/123/attendance_records/2025/09"
+        get "/workplaces/123/attendance_records"
 
         expect(response).to have_http_status(:unauthorized)
       end
@@ -34,7 +34,7 @@ RSpec.describe "attendance_records", type: :request do
       end
 
       it "lists attendance_records of specified month" do
-        get "/workplaces/#{workplace.id}/attendance_records/#{year}/#{month}"
+        get "/workplaces/#{workplace.id}/attendance_records", params: {year:, month:}
 
         expect(response).to have_http_status(:ok)
 
@@ -67,7 +67,7 @@ RSpec.describe "attendance_records", type: :request do
       end
 
       it "returns empty records" do
-        get "/workplaces/#{workplace.id}/attendance_records/#{year}/#{month}"
+        get "/workplaces/#{workplace.id}/attendance_records", params: {year:, month:}
 
         expect(response).to have_http_status(:ok)
 
