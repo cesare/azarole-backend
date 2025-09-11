@@ -27,4 +27,11 @@ class ApiKeysController < ApplicationController
     }
     render json: response_json, status: :created
   end
+
+  def destroy
+    api_key = current_user.api_keys.find(params[:id])
+    api_key.destroy!
+
+    head :ok
+  end
 end

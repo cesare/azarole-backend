@@ -71,4 +71,28 @@ RSpec.describe "api_keys", type: :request do
       end
     end
   end
+
+  describe "DELETE /api_keys" do
+    context "when user has not signed in" do
+      it "returns unauthorized error" do
+        delete "/api_keys/123"
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context "when user has signed in" do
+      let(:user) { User.create! }
+      let(:api_key) { user.api_keys.create!(name: "test", digest: "dummy-digest") }
+
+      before { login_as(user:) }
+
+      it "deletes the key" do
+        delete "/api_keys/#{api_key.id}"
+
+        expect(response).to have_http_status(:ok)
+        expect(ApiKey.find_by(id: api_key.id)).to be_blank
+      end
+    end
+  end
 end
