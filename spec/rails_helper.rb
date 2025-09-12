@@ -74,4 +74,6 @@ RSpec.configure do |config|
   OmniAuth.config.test_mode = true
 
   config.include LoginHelper, type: :request
+
+  RSpec::Matchers.define_negated_matcher(:not_change, :change)
 end
