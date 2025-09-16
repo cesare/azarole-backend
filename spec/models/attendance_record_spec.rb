@@ -39,4 +39,32 @@ RSpec.describe AttendanceRecord, type: :model do
       it { is_expected.to eq specified_recorded_at }
     end
   end
+
+  describe "#clock_in?" do
+    context "when event is clock-in" do
+      subject { AttendanceRecord.new(event: "clock-in") }
+
+      it { is_expected.to be_clock_in }
+    end
+
+    context "when event is not clock-in" do
+      subject { AttendanceRecord.new(event: "clock-out") }
+
+      it { is_expected.not_to be_clock_in }
+    end
+  end
+
+  describe "#clock_out?" do
+    context "when event is clock-out" do
+      subject { AttendanceRecord.new(event: "clock-out") }
+
+      it { is_expected.to be_clock_out }
+    end
+
+    context "when event is not clock-out" do
+      subject { AttendanceRecord.new(event: "clock-in") }
+
+      it { is_expected.not_to be_clock_out }
+    end
+  end
 end
