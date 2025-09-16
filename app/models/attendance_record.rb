@@ -9,4 +9,6 @@ class AttendanceRecord < ApplicationRecord
   def clock_in? = event == "clock-in"
 
   def clock_out? = event == "clock-out"
+
+  def date = recorded_at.to_date
 end

@@ -67,4 +67,10 @@ RSpec.describe AttendanceRecord, type: :model do
       it { is_expected.not_to be_clock_out }
     end
   end
+
+  describe "#date" do
+    subject { AttendanceRecord.new(recorded_at: Time.zone.parse("2025-09-16 12:45:56")).date }
+
+    it { is_expected.to eq Date.parse("2025-09-16") }
+  end
 end
