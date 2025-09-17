@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :api_keys, only: %i[index create destroy]
   resources :workplaces, only: %i[index create] do
     resources :attendance_records, only: %i[index destroy]
-  end
 
-  get "monthly_attendances/:year/:month", to: "monthly_attendances#show"
+    get "monthly_attendances/:year/:month", to: "monthly_attendances#show"
+  end
 
   namespace :api do
     resources :workplaces, only: %i[] do
