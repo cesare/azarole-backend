@@ -36,12 +36,12 @@ RSpec.describe "monthly_attendances", type: :request do
         expected_json = {
           year: 2025,
           month: 9,
-          dailyWorkTimes: [
+          dailyWorkingTimes: [
             {
               day: 1,
               timeTracked: 15904,
               hasError: false,
-              workTImes: [
+              workingTimes: [
                 {
                   complete: true,
                   startedAt: "2025-09-01T12:34:56+09:00",
@@ -54,7 +54,7 @@ RSpec.describe "monthly_attendances", type: :request do
               day: 2,
               timeTracked: 0,
               hasError: true,
-              workTImes: [
+              workingTimes: [
                 {
                   complete: false,
                   startedAt: "2025-09-02T15:01:02+09:00",
@@ -63,38 +63,38 @@ RSpec.describe "monthly_attendances", type: :request do
                 }
               ]
             },
-            {day: 3, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 4, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 5, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 6, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 7, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 8, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 9, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 10, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 11, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 12, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 13, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 14, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 15, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 16, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 17, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 18, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 19, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 20, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 21, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 22, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 23, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 24, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 25, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 26, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 27, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 28, timeTracked: 0, hasError: false, workTImes: []},
-            {day: 29, timeTracked: 0, hasError: false, workTImes: []},
+            {day: 3, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 4, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 5, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 6, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 7, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 8, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 9, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 10, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 11, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 12, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 13, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 14, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 15, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 16, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 17, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 18, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 19, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 20, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 21, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 22, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 23, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 24, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 25, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 26, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 27, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 28, timeTracked: 0, hasError: false, workingTimes: []},
+            {day: 29, timeTracked: 0, hasError: false, workingTimes: []},
             {
               day: 30,
               timeTracked: 24529,
               hasError: false,
-              workTImes: [
+              workingTimes: [
                 {
                   complete: true,
                   startedAt: "2025-09-30T10:20:30+09:00",

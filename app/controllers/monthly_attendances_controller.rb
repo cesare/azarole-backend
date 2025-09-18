@@ -11,12 +11,12 @@ class MonthlyAttendancesController < ApplicationController
     response_json = {
       year: year,
       month: month,
-      dailyWorkTimes: monthly_working_times.map do |date, daily_working_times|
+      dailyWorkingTimes: monthly_working_times.map do |date, daily_working_times|
         {
           day: date.day,
           timeTracked: daily_working_times.time_tracked,
           hasError: daily_working_times.has_error?,
-          workTImes: daily_working_times.map do |working_time|
+          workingTimes: daily_working_times.map do |working_time|
             {
               complete: working_time.complete?,
               startedAt: working_time.started_at&.iso8601,
