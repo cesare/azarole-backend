@@ -6,16 +6,12 @@ class MonthlyAttendancesController < ApplicationController
     year = params[:year].to_i(10)
     month = params[:month].to_i(10)
     work_times = MonthlyReportGenerator.new(workplace:, year:, month:).generate
-
-    date_from = Date.new(year, month)
-    date_range = (date_from..date_from.end_of_month)
+    monthly_working_times = MonthlyWorkingTime.new(year:, month:, working_times: work_times)
 
     response_json = {
       year: year,
       month: month,
-      dailyWorkTimes: date_range.map do |date|
-        daily_work_times = DailyWorkingTime.new(date:, working_times: work_times[date] || [])
-
+      dailyWorkTimes: monthly_working_times.map do |date, daily_work_times|
         {
           day: date.day,
           timeTracked: daily_work_times.time_tracked,
