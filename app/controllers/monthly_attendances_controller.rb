@@ -14,12 +14,12 @@ class MonthlyAttendancesController < ApplicationController
       year: year,
       month: month,
       dailyWorkTimes: date_range.map do |date|
-        daily_work_times = work_times[date] || []
+        daily_work_times = DailyWorkingTime.new(date:, working_times: work_times[date] || [])
 
         {
           day: date.day,
-          timeTracked: daily_work_times.sum { it.duration.round },
-          hasError: daily_work_times.any? { !it.complete? },
+          timeTracked: daily_work_times.time_tracked,
+          hasError: daily_work_times.has_error?,
           workTImes: daily_work_times.map do |work_time|
             {
               complete: work_time.complete?,
