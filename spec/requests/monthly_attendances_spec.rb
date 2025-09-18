@@ -44,8 +44,8 @@ RSpec.describe "monthly_attendances", type: :request do
               workTImes: [
                 {
                   complete: true,
-                  startedAt: "2025-09-01T12:34:56Z",
-                  endedAt: "2025-09-01T17:00:00Z",
+                  startedAt: "2025-09-01T12:34:56+09:00",
+                  endedAt: "2025-09-01T17:00:00+09:00",
                   timeTracked: 15904 # = 17:00:00 - 12:34:56
                 }
               ]
@@ -57,7 +57,7 @@ RSpec.describe "monthly_attendances", type: :request do
               workTImes: [
                 {
                   complete: false,
-                  startedAt: "2025-09-02T15:01:02Z",
+                  startedAt: "2025-09-02T15:01:02+09:00",
                   endedAt: nil,
                   timeTracked: 0
                 }
@@ -97,14 +97,14 @@ RSpec.describe "monthly_attendances", type: :request do
               workTImes: [
                 {
                   complete: true,
-                  startedAt: "2025-09-30T10:20:30Z",
-                  endedAt: "2025-09-30T12:12:12Z",
+                  startedAt: "2025-09-30T10:20:30+09:00",
+                  endedAt: "2025-09-30T12:12:12+09:00",
                   timeTracked: 6702 # = 12:12:12 - 10:20:30
                 },
                 {
                   complete: true,
-                  startedAt: "2025-09-30T13:14:15Z",
-                  endedAt: "2025-09-30T18:11:22Z",
+                  startedAt: "2025-09-30T13:14:15+09:00",
+                  endedAt: "2025-09-30T18:11:22+09:00",
                   timeTracked: 17827 # = 18:11:22 - 13:14:15
                 }
               ]
