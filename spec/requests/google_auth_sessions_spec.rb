@@ -1,17 +1,17 @@
 require "rails_helper"
 
 RSpec.describe "google_auth_sessions", type: :request do
-  describe "GET /auth/google_oauth2/callback" do
+  describe "GET /auth/google/callback" do
     context "when user is not present" do
       let(:uid) { SecureRandom.base64(24) }
 
       before do
-        OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({uid:})
+        OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({uid:})
       end
 
       it "registers user" do
         expect {
-          get "/auth/google_oauth2/callback"
+          get "/auth/google/callback"
         }.to change(User, :count).by(1)
           .and(change(GoogleAuthenticatedUser, :count).by(1))
 
@@ -33,12 +33,12 @@ RSpec.describe "google_auth_sessions", type: :request do
       let!(:google_authenticated_user) { GoogleAuthenticatedUser.create!(user:, uid:) }
 
       before do
-        OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({uid:})
+        OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({uid:})
       end
 
       it "signs in as the user" do
         expect {
-          get "/auth/google_oauth2/callback"
+          get "/auth/google/callback"
         }.to not_change(User, :count)
           .and(not_change(GoogleAuthenticatedUser, :count))
 

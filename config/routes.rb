@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "auth/google_oauth2/callback", to: "google_auth_sessions#create"
+  get "auth/google/callback", to: "google_auth_sessions#create"
   get "auth/failure", to: redirect("/")
   get "current_user", to: "current_user#show"
   delete "signout", to: "sessions#destroy"
