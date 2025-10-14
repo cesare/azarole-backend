@@ -8,7 +8,7 @@ class AttendanceRecordsController < ApplicationController
     response_json = {
       workplace: {
         id: workplace.id,
-        name: workplace.name,
+        name: workplace.name
       },
       year: target_month.year,
       month: target_month.month,

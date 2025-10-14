@@ -43,7 +43,7 @@ RSpec.describe "attendance_records", type: :request do
           month: month.to_i,
           workplace: {
             id: workplace.id,
-            name: workplace.name,
+            name: workplace.name
           },
           attendanceRecords: [
             {event: "clock-in", recordedAt: yesterday.change(hour: 11).iso8601},
@@ -82,7 +82,7 @@ RSpec.describe "attendance_records", type: :request do
           month: month.to_i,
           workplace: {
             id: workplace.id,
-            name: workplace.name,
+            name: workplace.name
           },
           attendanceRecords: []
         }.to_json
