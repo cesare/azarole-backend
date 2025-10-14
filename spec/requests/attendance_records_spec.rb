@@ -39,6 +39,8 @@ RSpec.describe "attendance_records", type: :request do
         expect(response).to have_http_status(:ok)
 
         expected_json = {
+          year: year.to_i,
+          month: month.to_i,
           attendanceRecords: [
             {event: "clock-in", recordedAt: yesterday.change(hour: 11).iso8601},
             {event: "clock-out", recordedAt: yesterday.change(hour: 13).iso8601},
@@ -72,6 +74,8 @@ RSpec.describe "attendance_records", type: :request do
         expect(response).to have_http_status(:ok)
 
         expected_json = {
+          year: year.to_i,
+          month: month.to_i,
           attendanceRecords: []
         }.to_json
         expect(response.body).to be_json_eql(expected_json)

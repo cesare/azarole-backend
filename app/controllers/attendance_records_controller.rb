@@ -6,6 +6,8 @@ class AttendanceRecordsController < ApplicationController
     attendance_records = workplace.attendance_records.where(recorded_at: indexing_range).order(:recorded_at).all
 
     response_json = {
+      year: target_month.year,
+      month: target_month.month,
       attendanceRecords: attendance_records.map do |attendance_record|
         {
           id: attendance_record.id,
