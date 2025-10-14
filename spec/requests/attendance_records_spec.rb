@@ -41,6 +41,10 @@ RSpec.describe "attendance_records", type: :request do
         expected_json = {
           year: year.to_i,
           month: month.to_i,
+          workplace: {
+            id: workplace.id,
+            name: workplace.name,
+          },
           attendanceRecords: [
             {event: "clock-in", recordedAt: yesterday.change(hour: 11).iso8601},
             {event: "clock-out", recordedAt: yesterday.change(hour: 13).iso8601},
@@ -76,6 +80,10 @@ RSpec.describe "attendance_records", type: :request do
         expected_json = {
           year: year.to_i,
           month: month.to_i,
+          workplace: {
+            id: workplace.id,
+            name: workplace.name,
+          },
           attendanceRecords: []
         }.to_json
         expect(response.body).to be_json_eql(expected_json)
