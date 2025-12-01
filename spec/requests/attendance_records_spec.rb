@@ -21,6 +21,12 @@ RSpec.describe "attendance_records", type: :request do
       let(:year) { today.year.to_s }
       let(:month) { format "%02d", today.month }
 
+      around do |example|
+        now = Time.current
+        target_time = now.day == 1 ? now + 1.day : now
+        travel_to(target_time) { example.run }
+      end
+
       before do
         login_as(user:)
 
