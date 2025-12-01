@@ -23,7 +23,7 @@ RSpec.describe "attendance_records", type: :request do
 
       around do |example|
         now = Time.current
-        target_time = now.day == 1 ? now + 1.day : now
+        target_time = (now.day == 1) ? now + 1.day : now
         travel_to(target_time) { example.run }
       end
 
